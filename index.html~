@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+
 <html>
   <head>
     <title>Cordova</title>
@@ -8,55 +9,60 @@
   
   <body>
     <h1 data-bind="text: appName">asdf</h1>
+    <p data-bind="text: appDescription">asdf</p>
   </body>
-  <script type="text/javascript" charset="utf-8">
-  // Language detection code is based on Michael Herger's solution. Check
-  // details: https://groups.google.com/forum/#!topic/phonegap/EkCyEBO8Dj4
-  // PhoneGap on Android would always return EN in navigator.*language, so
-  // let's parse userAgent instead.
   
-  var lang;
-  if (navigator && navigator.userAgent && (lang = navigator.userAgent.match(/android.*\W(\w\w)-(\w\w)\W/i))) 
-  {
-    lang = lang[1];
-  }
+  <script type="text/javascript" charset="utf-8">
+  
+    // Language detection code is based on Michael Herger's solution. Check
+    // details: https://groups.google.com/forum/#!topic/phonegap/EkCyEBO8Dj4
+    // PhoneGap on Android would always return EN in navigator.*language, so
+    // let's parse userAgent instead.
+    
+    var lang;
+    if (navigator && navigator.userAgent && (lang = navigator.userAgent.match(/android.*\W(\w\w)-(\w\w)\W/i))) 
+    {
+      lang = lang[1];
+    }
 
-  if (!lang && navigator) 
-  {
-    if (navigator.language) 
+    if (!lang && navigator) 
     {
-      lang = navigator.language;
-    } 
-    else if (navigator.browserLanguage) 
-    {
-      lang = navigator.browserLanguage;
-    } 
-    else if (navigator.systemLanguage) 
-    {
-      lang = navigator.systemLanguage;
-    } 
-    else if (navigator.userLanguage) 
-    {
-      lang = navigator.userLanguage;
+      if (navigator.language) 
+      {
+        lang = navigator.language;
+      } 
+      else if (navigator.browserLanguage) 
+      {
+        lang = navigator.browserLanguage;
+      } 
+      else if (navigator.systemLanguage) 
+      {
+        lang = navigator.systemLanguage;
+      } 
+      else if (navigator.userLanguage) 
+      {
+        lang = navigator.userLanguage;
+      }
+      lang = lang.substr(0, 2);
     }
-    lang = lang.substr(0, 2);
-  }
-  function AppViewModel()
-  {
-    if (lang == "en")
+    
+    function AppViewModel()
     {
-      this.appName = "Personal Travis";
-      this.appDescription = "Personal Travis is your pocket-size personal trainer."
+      if (lang == "fi")
+      {
+        this.appName = "Personal Raineri";
+        this.appDescription = "Personal Raineri on taskukokoinen personal trainerisi."
+      }
+      else
+      {
+        this.appName = "Personal Travis";
+        this.appDescription = "Personal Travis is your pocket-size personal trainer."
+      }
     }
-    else
-    {
-      this.appName = "Personal Travis";
-      this.appDescription = "Personal Travis is your pocket-size personal trainer."
-    }
-  }
-  ko.applyBindings(new AppViewModel());
-  alert ("asdf");
-</script>
+    
+    ko.applyBindings(new AppViewModel());
+  
+  </script>
 </html>
 
 
